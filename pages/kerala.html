@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kerala – God's Own Country | Bharatverse</title>
+  <meta name="description" content="Explore Kerala – backwaters, spices, Kathakali, Theyyam, Sadhya, Ayurveda and more in an immersive cultural metaverse.">
+  <meta property="og:title" content="Kerala – God's Own Country | Bharatverse">
+  <meta property="og:description" content="Interactive journey through 3000 years of Kerala's heritage.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1580019542155-247062e19ce4?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1580019542155-247062e19ce4?auto=format&fit=crop&w=1920&q=80&fm=webp">
+  <style>
+    :root{
+      --ever:rgba(10, 57, 40, 0.845) ;
+      --gold:#ffb800;
+      --ivry:#fff8f0;
+      --leaf:#1f3a2e;
+      --glass:rgba(255, 255, 255, 0.142);
+      --speed:.6s;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+       background: linear-gradient(45deg, #fa946f, #eca049, #ffd23f, #409777, #118ab2, #073b4c);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      
+    }
+    @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+    /* ---------- HERO ---------- */
+    .hero-slider{position:relative;width:100%;height:70vh;overflow:hidden}
+    .slide{display: none;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease-in-out;}
+    .slide:nth-child(1){animation-delay:0s}
+    .slide:nth-child(2){animation-delay:3s}
+    .slide:nth-child(3){animation-delay:7s}
+    .slide:nth-child(4){animation-delay:12s}
+    @keyframes fade{0%,33.33%{opacity:1}34%,100%{opacity:0}}
+    .hero-text{position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  text-align: center;}
+    .hero-text h1{font-size:clamp(2.2rem,5vw + 1rem,4rem);letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+    .hero-text p{font-size:clamp(1rem,2vw + .2rem,1.3rem);max-width:700px;margin-top:.5rem;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+    /* ---------- NAV ---------- */
+    .navbar{position:fixed;top:0;padding:15px 50px;width:100%;background: linear-gradient(45deg, #396d5a, #409f74, #ab9264);backdrop-filter:blur(12px);z-index:1000;display:flex;justify-content:space-between;align-items:center;transition:.3s}
+    .navbar:hover{background:rgba(130, 160, 88, 0.65)}
+    .logo{ font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 2s ease-in-out infinite alternate;}
+    .sign-in-btn{ background: linear-gradient(45deg, #d99b4b, #b78324cf);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;}
+    .sign-in-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    /* ---------- RECOMMENDATIONS ---------- */
+    .recommendations{margin-top:90px;padding:.8rem 3rem;display:flex;gap:.8rem;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--gold) }
+    .recommendations::-webkit-scrollbar{height:6px}
+    .recommendations::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+    .rec-item{background:var(--glass);padding:.5rem 1.2rem;border-radius:20px;white-space:nowrap;font-size:.9rem;cursor:pointer;transition:background var(--speed)}
+    .rec-item:hover{background:var(--gold);color:var(--ever)}
+    /* ---------- SECTIONS ---------- */
+    .section-title{text-align:center;font-size:2.4rem;margin:3.5rem 0 2rem;letter-spacing:1px;color:var(--gold)}
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding:0 3rem 3rem}
+    @media(max-width:992px){.cards-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:576px){.cards-grid{grid-template-columns:1fr}}
+    .glass-card{background:var(--glass);backdrop-filter:blur(10px);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform var(--speed),box-shadow var(--speed);will-change:transform}
+    .glass-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+    .card-img{width:100%;aspect-ratio:16/9;object-fit:cover}
+    .card-body{padding:1.2rem 1.4rem 1.6rem;flex:1;display:flex;flex-direction:column}
+    .card-body h3{font-size:1.25rem;color:var(--gold);margin-bottom:.5rem}
+    .card-body p{font-size:.95rem;color:var(--ivry);flex:1}
+    /* ---------- TIMELINE ---------- */
+    .timeline{position:relative;padding:2rem 3rem 3rem;max-width:900px;margin:auto}
+    .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--gold);transform:translateX(-50%)}
+    .timeline-item{position:relative;width:50%;padding:1rem 2.5rem}
+    .timeline-item:nth-child(odd){left:0;text-align:right;padding-right:3.5rem}
+    .timeline-item:nth-child(even){left:50%;padding-left:3.5rem}
+    .timeline-dot{position:absolute;top:1.3rem;width:14px;height:14px;background:var(--gold);border:3px solid var(--ivry);border-radius:50%}
+    .timeline-item:nth-child(odd) .timeline-dot{right:-7px}
+    .timeline-item:nth-child(even) .timeline-dot{left:-7px}
+    .timeline-content{background:var(--glass);padding:1rem 1.2rem;border-radius:12px}
+    .timeline-content h4{color:var(--gold);margin-bottom:.3rem}
+    .timeline-content p{font-size:.9rem}
+    /* ---------- FOOTER ---------- */
+    footer{text-align:center;padding:2rem;font-size:.9rem;background:var(--glass)}
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">Bharatverse</div>
+  <button class="sign-in-btn" aria-label="Sign in">Sign In</button>
+</nav>
+
+<div class="recommendations">
+  <div class="rec-item" onclick="scrollTo('intro')">📜 Introduction</div>
+  <div class="rec-item" onclick="scrollTo('history')">🏛 History</div>
+  <div class="rec-item" onclick="scrollTo('food')">🍛 Cuisine</div>
+  <div class="rec-item" onclick="scrollTo('attire')">🥻 Attire</div>
+  <div class="rec-item" onclick="scrollTo('arts')">🎭 Folk Arts</div>
+  <div class="rec-item" onclick="scrollTo('music')">🎵 Music</div>
+  <div class="rec-item" onclick="scrollTo('painting')">🖼 Paintings</div>
+  <div class="rec-item" onclick="scrollTo('contrib')">🌟 Contributions</div>
+</div>
+
+<section class="hero-slider">
+     <picture>
+      <source srcset="https://wallpapercave.com/wp/wp2894071.jpg" type="image/webp">
+      <img class="slide" src="https://www.traveltelling.net/wp-content/uploads/2019/08/Reise-nach-Kerala-Indien.jpg" alt="Backwaters">
+    </picture>
+
+    <picture>
+      <source srcset="https://wallpapercave.com/wp/wp2783358.jpg" type="image/webp">
+      <img class="slide" src="https://wallpapercat.com/w/full/4/b/e/851708-2560x1440-desktop-hd-kerala-wallpaper-photo.jpg" alt="Tea Hills">
+    </picture>
+
+    <picture>
+      <source srcset="https://wallpapercave.com/wp/MgMYE5Z.jpg" type="image/webp">
+      <img class="slide" src="http://cdn.wallpapersafari.com/1/51/2QenOf.jpg" alt="Kathakali">
+    </picture>
+
+    <picture>
+      <source srcset="https://wallpapercave.com/wp/LhN5ziZ.jpg" type="image/webp">
+      <img class="slide" src="https://gotravelblogger.com/wp-content/uploads/2024/03/Screenshot_6.png" alt="Theyyam">
+    </picture>
+  
+  <div class="hero-text">
+    <h1>Kerala – God's Own Country</h1>
+    <p>A narrow strip of evergreen wonders wedged between the Western Ghats and the Arabian Sea, Kerala has been radiating culture, spice and serenity for over 3000 years.</p>
+  </div>
+</section>
+
+<h2 class="section-title" id="intro">Introduction</h2>
+<div class="cards-grid">
+  <div class="glass-card">
+    <img class="card-img" src="https://static.wixstatic.com/media/d37a82_c630f952b89a4c118b3ce989ddde4d11~mv2.png/v1/fill/w_980,h_653,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/d37a82_c630f952b89a4c118b3ce989ddde4d11~mv2.png" loading="lazy" alt="Kochi">
+    <div class="card-body">
+      <h3>Geography & Climate</h3>
+      <p>Spread across 38 863 km², Kerala enjoys a tropical monsoon climate. 44 rivers, 34 back-water lakes and 580 km of coastline create a unique labyrinth of waterways.</p>
+    </div>
+  </div>
+  <div class="glass-card">
+    <img class="card-img" src="https://i.ytimg.com/vi/VhZln5gCGF4/maxresdefault.jpg" loading="lazy" alt="Munnar">
+    <div class="card-body">
+      <h3>Spice Garden of India</h3>
+      <p>Black-pepper, cardamom, clove, nutmeg, cinnamon—Kerala produces 97 % of India's pepper and 75 % of cardamom.</p>
+    </div>
+  </div>
+  <div class="glass-card">
+    <img class="card-img" src="https://tse3.mm.bing.net/th/id/OIP.GzdIpKsFkl8yHgL2VAuwbQHaEK?pid=Api&P=0&h=220" loading="lazy" alt="Study">
+    <div class="card-body">
+      <h3>100 % Literate State</h3>
+      <p>Kerala became the first Indian state to achieve universal literacy (1991). The Kerala model is studied globally.</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title" id="history">History</h2>
+<div class="timeline">
+  <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>3000 BCE – Sangam Era</h4><p>Chera dynasty rules the Malabar coast; trade links with Babylon, Egypt and Rome flourish.</p></div></div>
+  <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>52 CE – Arrival of St. Thomas</h4><p>One of the twelve apostles of Jesus is believed to have landed at Muziris.</p></div></div>
+  <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>7th – 9th Century – Adi Shankara</h4><p>Philosopher-saint born at Kalady; consolidates Advaita Vedanta.</p></div></div>
+  <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>1498 – Vasco da Gama</h4><p>Portuguese explorer lands at Kappad near Kozhikode.</p></div></div>
+  <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>1956 – State of Kerala</h4><p>On 1 Nov 1956, the modern state is formed.</p></div></div>
+</div>
+
+<h2 class="section-title" id="food">Cuisine</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://www.keralatourism.org/images/cuisine/sadya-1024x576.jpg" loading="lazy" alt="Sadhya"><div class="card-body"><h3>Sadhya – Vegetarian Feast</h3><p>Served on fresh banana leaf, the 24-item spread includes parippu, sambar, avial, thoran, kalan, inji-puli, pappadam, payasam and red rice.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://i.ytimg.com/vi/sdN-OBtZ8tw/maxresdefault.jpg" loading="lazy" alt="Karimeen"><div class="card-body"><h3>Seafood Specials</h3><p>Karimeen Pollichathu—fish marinated with Kerala spices, wrapped in banana leaf and pan-grilled.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://www.keralatourism.org/images/picture/large/Pathiri_2601.jpg" loading="lazy" alt="Pathiri"><div class="card-body"><h3>Malabar Biriyani & Pathiri</h3><p>Thalassery biriyani uses short-grain kaima rice, fried onions, cashew and ghee.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://www.honeywhatscooking.com/wp-content/uploads/2020/10/Rice-Kheer-Indian-Rice-Pudding44.jpg" loading="lazy" alt="Payasam"><div class="card-body"><h3>Payasam Varieties</h3><p>Palada, Parippu, Ada Pradhaman, Gothambu and Chakka payasam slow-cooked in uruli till creamy.</p></div></div>
+</div>
+
+<h2 class="section-title" id="attire">Traditional Attire</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://tse3.mm.bing.net/th/id/OIP.n0y0x6jEVRgYBzLWgfJwmQHaFj?pid=Api&P=0&h=220" loading="lazy" alt="Kasavu"><div class="card-body"><h3>Kasavu & Set-Saree</h3><p>Off-white cotton with golden jari border worn during Onam and Vishu.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://c8.alamy.com/comp/A04YP9/view-of-groom-tying-the-mangalyasutra-in-a-traditional-kerala-hindu-A04YP9.jpg" loading="lazy" alt="Bride"><div class="card-body"><h3>Bridal Wear</h3><p>Rich Kasaragod silk sarees with wide gold kasavu, paired with temple jewellery.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://www.worldblaze.in/wp-content/uploads/2023/01/Traditional-Dress-of-Kerala.webp" loading="lazy" alt="Mundu"><div class="card-body"><h3>Mundu – Unisex Garment</h3><p>4.5 m cotton cloth dhoti-style, edged with 5 cm coloured band.</p></div></div>
+</div>
+
+<h2 class="section-title" id="arts">Folk & Classical Arts</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://kerala.me/wp-content/uploads/2015/11/Kathakali.jpg" loading="lazy" alt="Kathakali"><div class="card-body"><h3>Kathakali</h3><p>"Story-Play" born in 17th-century temples. Green faces denote heroes, red-black are demons.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://images.nativeplanet.com/ph-big/2024/03/theyyam-divine-dance-of-kerala_170928976440.jpg" loading="lazy" alt="Theyyam"><div class="card-body"><h3>Theyyam</h3><p>800-year-old ritual dance of North-Kerala. Performers personify deities, heroes, serpent-gods.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://wallpaperaccess.com/full/5335394.jpg" loading="lazy" alt="Mohiniyattam"><div class="card-body"><h3>Mohiniyattam</h3><p>"Dance of the enchantress" – graceful swaying, circular movements and emotive eye-glances.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://th-thumbnailer.cdn-si-edu.com/Mt0l1qd3KSxkT7dyZmas1rr2hR4=/fit-in/1072x0/https://tf-cmsv2-photocontest-smithsonianmag-prod-approved.s3.amazonaws.com/9803182b-1480-4942-a399-a7d9113ad8c7.jpg" loading="lazy" alt="Koodiyattam"><div class="card-body"><h3>Koodiyattam</h3><p>2000-year-old Sanskrit theatre recognised by UNESCO.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://d1xuqjt1wg0fxw.cloudfront.net/2e8400c0-1c5a-11ec-841a-c5090cc16908.jpg" loading="lazy" alt="Thiruvathira"><div class="card-body"><h3>Thiruvathira Kali</h3><p>Women dance in circle around nilavilakku on Thiruvathira day.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/pulikali-francis-xavier.jpg" loading="lazy" alt="Pulikali"><div class="card-body"><h3>Pulikali</h3><p>"Tiger-dance" of Thrissur – 200+ men painted as yellow-black tigers.</p></div></div>
+</div>
+
+<h2 class="section-title" id="music">Music Traditions</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://as2.ftcdn.net/v2/jpg/03/99/37/43/1000_F_399374399_civJRMdq4LTDXGUVmdaN0rjmI4XomhkE.jpg" loading="lazy" alt="Chenda"><div class="card-body"><h3>Sopana Sangeetam</h3><p>Temple music sung on the steps leading to sanctum. Slow, meditative ragas.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://live.staticflickr.com/2828/9861340355_9aac6345f5_b.jpg" loading="lazy" alt="Panchavadyam"><div class="card-body"><h3>Panchavadyam</h3><p>Orchestra of five instruments—timila, maddalam, ilathalam, kombu and idakka.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://i.ytimg.com/vi/MhWKr4JYI5U/maxresdefault.jpg" loading="lazy" alt="Mappila-Pattu"><div class="card-body"><h3>Mappila Pattu</h3><p>Folk songs of Malabar Muslims, sung in Arabic-Malayalam script.</p></div></div>
+</div>
+
+<h2 class="section-title" id="painting">Paintings & Murals</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://www.keralatourism.org/images/thalassery/picture-gallery/large/thiruvangad-sree-ramaswami-temple-mural-paintings.jpg" loading="lazy" alt="Mural"><div class="card-body"><h3>Temple Murals</h3><p>900-year-old frescoes at Padmanabhapuram palace depict episodes from Ramayana.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://i.pinimg.com/originals/24/a5/42/24a542b7ccc078a8bf0e1db4c7b835da.jpg" loading="lazy" alt="Tanjore-Kerala"><div class="card-body"><h3>Kerala Tanjore</h3><p>Local adaptation of Tanjore style—raised gold leaf, glass beads and gem tones.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://i.pinimg.com/originals/4a/36/02/4a3602b0b3d48bd92681a3e6d22825d3.jpg" loading="lazy" alt="Kalamezhuthu"><div class="card-body"><h3>Kalamezhuthu</h3><p>Floor art drawn with natural powders during Theyyam worship.</p></div></div>
+</div>
+
+<h2 class="section-title" id="contrib">Contributions to India</h2>
+<div class="cards-grid">
+  <div class="glass-card"><img class="card-img" src="https://i.pinimg.com/originals/55/9e/48/559e48c59d6b1d4bcbd9273ef7e1ccac.jpg" loading="lazy" alt="Ayurveda"><div class="card-body"><h3>Ayurveda & Well-being</h3><p>Kottakkal Arya Vaidya Sala globalised Ayurveda. 850+ licensed hospitals.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://keralaspiceswholesale.com/wp-content/uploads/2024/05/Kerala-Spice-Markets-scaled.webp" loading="lazy" alt="Spice-Trade"><div class="card-body"><h3>Spice & Maritime Trade</h3><p>70 % of India's pepper export originates from Kochi & Thoothukudi ports.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://images.livemint.com/img/2022/10/23/600x338/PTI10-23-2022-000170A-0_1666527726414_1666527726414_1666527740216_1666527740216.jpg" loading="lazy" alt="Literacy"><div class="card-body"><h3>Literacy & Education</h3><p>Kerala's 96.2 % literacy fuels India's largest pool of nurses & doctors.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://wallpapercave.com/wp/wp10070859.jpg" loading="lazy" alt="Vallam-Kali"><div class="card-body"><h3>Vallam Kali – Boat Race</h3><p>Nehru Trophy boat race pioneered sports tourism in India.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://www.tripsavvy.com/thmb/P-vBKShJXcsDT_5m-IF2xSMQ8q0=/3600x2400/filters:fill(auto,1)/GettyImages-522478216-5ab12c4e3de4230036949cee.jpg" loading="lazy" alt="Tourism"><div class="card-body"><h3>Responsible Tourism</h3><p>Kerala won UNWTO Ulysses Award (2014) for inclusive tourism.</p></div></div>
+  <div class="glass-card"><img class="card-img" src="https://www.ancient-origins.net/sites/default/files/styles/article_image/public/field/image/Aranmula-Kannadi-Mirrors.jpg?itok=t4HDBxGz" loading="lazy" alt="Aranmula"><div class="card-body"><h3>Aranmula Kannadi</h3><p>Metal-alloy mirror handmade by 35 families of Aranmula; GI tagged.</p></div></div>
+</div>
+
+<footer>
+  Crafted with ❤ for Bharatverse | © 2025 Kerala Cultural Portal
+</footer>
+
+<script>
+    let index = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide() {
+  slides.forEach((slide, i) => {
+    slide.style.display = (i === index) ? "block" : "none";
+  });
+  index = (index + 1) % slides.length;
+  setTimeout(showSlide, 3000); // Change image every 3s
+}
+
+showSlide();
+ 
+</script>
+</body>
+</html>

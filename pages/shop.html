@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharatverse - Cultural Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Import all styles from main page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #090909;
+            color: white;
+        }
+
+        /* Animated Cultural Background */
+        .cultural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #fa946f, #eca049, #ffd23f, #409777, #118ab2, #073b4c);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cultural-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="10" y="20" font-size="12" fill="rgba(255,255,255,0.1)">ॐ</text><text x="70" y="40" font-size="8" fill="rgba(255,255,255,0.1)">🕉</text><text x="30" y="60" font-size="10" fill="rgba(255,255,255,0.1)">🪔</text><text x="80" y="80" font-size="9" fill="rgba(255,255,255,0.1)">🕌</text><text x="5" y="90" font-size="11" fill="rgba(255,255,255,0.1)">🛕</text></svg>') repeat;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(11, 6, 70, 0.344);
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(11, 6, 70, 0.5);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+            cursor: pointer;
+        }
+
+        @keyframes logoGlow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .tagline {
+            color: #ccc;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #ffd700;
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .sign-in-btn {
+            background: linear-gradient(45deg, #d99b4b, #b78324cf);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Landing Page Styles */
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 50px 50px;
+        }
+
+        .landing-hero {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .landing-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .landing-subtitle {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .choice-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 50px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .choice-card:hover::before {
+            opacity: 1;
+            animation: shimmer 0.6s ease;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .choice-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover .choice-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .choice-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .choice-desc {
+            color: #f8f2f2;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Shop Page Styles */
+        .shop-container {
+            padding: 100px 50px 50px;
+            display: none;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .shop-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .shop-subtitle {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #090909;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Category Filters */
+        .category-filters {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            color: #090909;
+            border-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #ffd700;
+        }
+
+        .product-category {
+            color: #ccc;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #06ffa5;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #118ab2, #06ffa5);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(6, 255, 165, 0.4);
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .add-to-cart-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(11, 6, 70, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .cart-modal.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-cart:hover {
+            color: #ff6b35;
+            transform: rotate(90deg);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .cart-item-price {
+            color: #06ffa5;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff4500;
+            transform: scale(1.1);
+        }
+
+        .cart-total {
+            position: sticky;
+            bottom: 0;
+            background: rgba(11, 6, 70, 0.95);
+            padding: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .total-amount {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            color: #090909;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #ccc;
+            padding: 40px;
+            font-style: italic;
+        }
+
+        /* Product Detail Modal */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-modal-content {
+            background: rgba(11, 6, 70, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ff6b35;
+            transform: rotate(90deg);
+        }
+
+        .product-detail-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .product-detail-info {
+            padding: 30px;
+        }
+
+        .product-detail-name {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .product-detail-desc {
+            color: #f8f2f2;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-detail-price {
+            font-size: 2rem;
+            color: #06ffa5;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quantity-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #ffd700;
+            color: #090909;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: white;
+            padding: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Seller Form */
+        .seller-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #118ab2, #06ffa5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(6, 255, 165, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .landing-title {
+                font-size: 2.5rem;
+            }
+
+            .choice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .shop-container {
+                padding: 100px 20px 50px;
+            }
+
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cultural-bg"></div>
+    <div class="cultural-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-section">
+            <div class="logo" onclick="showLanding()">
+                <i class="fas fa-store"></i> Bharatverse Shop
+            </div>
+            <div class="tagline">Authentic Indian Handicrafts & Heritage</div>
+        </div>
+        <div class="nav-right">
+            <div class="cart-icon" onclick="openCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <button class="sign-in-btn" onclick="alert('Seller Login Modal')">
+                <i class="fas fa-user"></i> Seller Login
+            </button>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div class="landing-container" id="landingPage">
+        <div class="landing-hero">
+            <h1 class="landing-title">Welcome to Bharatverse Cultural Shop</h1>
+            <p class="landing-subtitle">Where Tradition Meets Tomorrow</p>
+            
+            <div class="choice-grid">
+                <div class="choice-card" onclick="showSellForm()">
+                    <span class="choice-icon">🏪</span>
+                    <h2 class="choice-title">Want to Sell</h2>
+                    <p class="choice-desc">Join our community of artisans and heritage keepers. Showcase your authentic Indian handicrafts, traditional art, and cultural products to a global audience.</p>
+                </div>
+
+                <div class="choice-card" onclick="showShop()">
+                    <span class="choice-icon">🛍️</span>
+                    <h2 class="choice-title">Want to Shop</h2>
+                    <p class="choice-desc">Discover exquisite handcrafted treasures from across India. From traditional textiles to ancient art forms, bring home a piece of our heritage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Page -->
+    <div class="shop-container" id="shopPage">
+        <div class="shop-header">
+            <h1 class="shop-title">Cultural Heritage Shop</h1>
+            <p class="shop-subtitle">Authentic Handicrafts from Across India</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search for handicrafts, textiles, jewelry..." onkeyup="searchProducts()">
+            <button class="search-btn" onclick="searchProducts()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('textiles')">Traditional Textiles</button>
+            <button class="filter-btn" onclick="filterProducts('handicrafts')">Handicrafts</button>
+            <button class="filter-btn" onclick="filterProducts('jewelry')">Jewelry</button>
+            <button class="filter-btn" onclick="filterProducts('art')">Art & Paintings</button>
+            <button class="filter-btn" onclick="filterProducts('home')">Home Decor</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <!-- Seller Form Page -->
+    <div class="shop-container" id="sellPage" style="display: none;">
+        <div class="shop-header">
+            <h1 class="shop-title">Become a Heritage Seller</h1>
+            <p class="shop-subtitle">Share Your Craft with the World</p>
+        </div>
+
+        <div class="seller-form-container">
+            <form onsubmit="submitSellerForm(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Business Name</label>
+                    <input type="text" class="form-input" placeholder="Your shop or business name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Product Category</label>
+                    <select class="form-input" required>
+                        <option value="">Select category</option>
+                        <option>Traditional Textiles</option>
+                        <option>Handicrafts</option>
+                        <option>Jewelry</option>
+                        <option>Art & Paintings</option>
+                        <option>Home Decor</option>
+                        <option>Books & Music</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Describe Your Products</label>
+                    <textarea class="form-input form-textarea" placeholder="Tell us about your traditional products, crafting methods, and heritage story..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Years of Experience</label>
+                    <input type="number" class="form-input" placeholder="Years in this craft" min="0">
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3 class="cart-title">
+                <i class="fas fa-shopping-cart"></i> Shopping Cart
+            </h3>
+            <button class="close-cart" onclick="closeCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <div class="total-amount">
+                <span>Total:</span>
+                <span id="cartTotalAmount">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+            <button class="close-modal" onclick="closeProductModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="productModalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Product Data
+        const products = [
+            { id: 1, name: "Banarasi Silk Saree", category: "textiles", price: 4000, image: "https://prithacrafts.com/wp-content/uploads/2020/12/NTS3737-Pure_Silk_Lined_Banarasi_Saree_Red-111_1000x.jpg", description: "Pure silk Banarasi saree with intricate zari work from Varanasi. A masterpiece of Indian weaving tradition." },
+            { id: 2, name: "Rajasthani Blue Pottery Set", category: "handicrafts", price: 3500, image: "https://c9admin.cottage9.com/uploads/2322/image_2023_01_20T09_08_11_450Z-1024x723.png", description: "Handcrafted blue pottery set from Jaipur featuring traditional floral patterns. Set of 6 plates and bowls." },
+            { id: 3, name: "Kerala Kasavu Saree", category: "textiles", price: 2999, image: "https://i.pinimg.com/736x/92/98/59/92985968f7390c0e49c91c70de1f7c9c.jpg", description: "Traditional Kerala kasavu saree with golden border, handwoven from premium cotton-silk blend." },
+            { id: 4, name: "Madhubani Painting", category: "art", price: 1999, image: "https://i.pinimg.com/originals/cc/7e/27/cc7e2733f44c3716275cae476d3d698d.jpg", description: "Authentic Madhubani folk art painting depicting Hindu mythology. Natural colors on handmade paper." },
+            { id: 5, name: "Phulkari Dupatta", category: "textiles", price: 1199, image: "https://craftmagic.in/wp-content/uploads/2019/10/phulkari-chanderi-dupatta-sto201c.jpg", description: "Colorful Punjabi Phulkari embroidery dupatta with geometric patterns. Pure cotton base." },
+            { id: 6, name: "Sandalwood Murti", category: "home", price: 999, image: "https://i.etsystatic.com/21417665/r/il/798a0e/3644325494/il_fullxfull.3644325494_79q1.jpg", description: "Hand-carved sandalwood Ganesha murti from Mysore. Intricate details, aromatic sandalwood." },
+            { id: 7, name: "Assam Silk Scarf", category: "textiles", price: 1800, image: "https://tse3.mm.bing.net/th/id/OIP.gV4DWHC06zZ5rW05iZsvqgHaJ3?rs=1&pid=ImgDetMain&o=7&rm=3", description: "Luxurious Assam silk scarf with traditional motifs. Soft texture, natural silk fibers." },
+            { id: 8, name: "Kathakali Mask", category: "art", price: 789, image: "https://i.pinimg.com/originals/49/9d/2b/499d2b51a668c2f1fb137e9baa8f4a4a.jpg", description: "Traditional Kathakali dance mask from Kerala. Hand-painted wood with vibrant natural colors." },
+            { id: 9, name: "Bengali Cotton Saree", category: "textiles", price: 2001, image: "https://m.media-amazon.com/images/I/51aYJahEQmL.jpg", description: "Fine cotton saree with Bengal jamdani work. Light, breathable, perfect for summer." },
+            { id: 10, name: "Warli Art Canvas", category: "art", price: 3000, image: "https://paperplanedesign.in/cdn/shop/files/ethnic-indian-warli-wall-art-canvas-painting-for-home-decor-ready-to-hang-art-151823.jpg?v=1715591324&width=1080", description: "Tribal Warli art canvas depicting village life. White rice paste on earth-colored background." },
+            { id: 11, name: "Brass Diya Set", category: "home", price: 800, image: "https://img3.exportersindia.com/product_images/bc-full/2022/6/10263678/brass-diya-set-of-4-1654585606-6380540.jpeg", description: "Set of 7 brass diyas for festive decoration. Traditional design, polished finish." },
+            { id: 12, name: "Kashmiri Pashmina Shawl", category: "textiles", price: 2500, image: "https://tse1.explicit.bing.net/th/id/OIP.XHgoDEpV6-dnwq9E4Yqx-QHaLH?rs=1&pid=ImgDetMain&o=7&rm=3", description: "Authentic Kashmiri Pashmina shawl with Soz embroidery. Ultra-soft, hand-spun from Himalayan goat wool." },
+            { id: 13, name: "Traditional Salwar Suit", category: "textiles", price: 1499, image: "https://media.istockphoto.com/id/1224796628/photo/close-up-view-of-a-mannequin-dressed-in-indian-woman-clothes-salwar-kameez-in-a-retail-display.jpg?s=1024x1024&w=is&k=20&c=ktVCd8vWDj5TxmBTg9QwhuUOjx60KZWbYCektopnxhw=", description: "Complete salwar kameez set with hand embroidery. Available in multiple traditional patterns." },
+            { id: 14, name: "Terracotta Jewelry Set", category: "jewelry", price: 1500, image: "https://i.pinimg.com/originals/f6/34/1d/f6341dfa70594b52801c74bc1d53ba2d.jpg", description: "Hand-painted terracotta necklace and earring set. Eco-friendly, rustic appeal." },
+            { id: 15, name: "Classical Music CD Collection", category: "art", price: 2000, image: "https://vinayakmusic.com/public/uploads/all/ty0Wf45bOgcyDVKh1tqW82p4KWO0J2CcoaUgzUOP.jpg", description: "Premium collection of Indian classical music featuring Pandit Ravi Shankar, Zakir Hussain, and more." }
+        ];
+
+        let cart = [];
+        let currentView = 'landing';
+
+        // Initialize
+        window.onload = () => {
+            if (localStorage.getItem('cart')) {
+                cart = JSON.parse(localStorage.getItem('cart'));
+                updateCartCount();
+            }
+        };
+
+        // View Functions
+        function showLanding() {
+            currentView = 'landing';
+            document.getElementById('landingPage').style.display = 'flex';
+            document.getElementById('shopPage').style.display = 'none';
+            document.getElementById('sellPage').style.display = 'none';
+            document.querySelector('.cart-icon').style.display = 'none';
+        }
+
+        function showShop() {
+            currentView = 'shop';
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('shopPage').style.display = 'block';
+            document.getElementById('sellPage').style.display = 'none';
+            document.querySelector('.cart-icon').style.display = 'block';
+            renderProducts(products);
+        }
+
+        function showSellForm() {
+            currentView = 'sell';
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('shopPage').style.display = 'none';
+            document.getElementById('sellPage').style.display = 'block';
+            document.querySelector('.cart-icon').style.display = 'none';
+        }
+
+        // Product Functions
+        function renderProducts(productList) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            productList.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.style.animation = `fadeInUp 0.6s ease ${index * 0.05}s both`;
+                
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <span class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</span>
+                        <div class="product-price">₹${product.price.toLocaleString('en-IN')}</div>
+                        <button class="add-to-cart-btn" onclick="showProductDetails(${product.id})">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            renderProducts(filtered);
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.category.toLowerCase().includes(searchTerm)
+            );
+            renderProducts(filtered);
+        }
+
+        // Cart Functions
+        function addToCart(productId, quantity = 1) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ ...product, quantity });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            // Show success animation
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+            btn.style.background = 'linear-gradient(45deg, #06ffa5, #118ab2)';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                btn.style.background = 'linear-gradient(45deg, #118ab2, #06ffa5)';
+            }, 1500);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function openCart() {
+            renderCart();
+            document.getElementById('cartModal').classList.add('open');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('open');
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            const totalContainer = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-basket" style="font-size: 3rem; margin-bottom: 15px;"></i><p>Your cart is empty</p></div>';
+                totalContainer.style.display = 'none';
+                return;
+            }
+            
+            container.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')} × ${item.quantity}</div>
+                        <div style="color: #06ffa5; font-weight: bold;">₹${itemTotal.toLocaleString('en-IN')}</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(cartItem);
+            });
+            
+            document.getElementById('cartTotalAmount').textContent = `₹${total.toLocaleString('en-IN')}`;
+            totalContainer.style.display = 'block';
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            alert(`🎉 Order placed successfully!\n\nThank you for preserving Indian heritage.\nTotal: ₹${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toLocaleString('en-IN')}\n\nYou will receive order confirmation via email.`);
+            cart = [];
+            localStorage.removeItem('cart');
+            closeCart();
+            updateCartCount();
+        }
+
+        // Product Detail Functions
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            const modal = document.getElementById('productModal');
+            const body = document.getElementById('productModalBody');
+            
+            body.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-detail-image">
+                <div class="product-detail-info">
+                    <h2 class="product-detail-name">${product.name}</h2>
+                    <p class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                    <p class="product-detail-desc">${product.description}</p>
+                    <div class="product-detail-price">₹${product.price.toLocaleString('en-IN')}</div>
+                    
+                    <div class="quantity-selector">
+                        <span style="color: #ffd700; font-weight: bold;">Quantity:</span>
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                    
+                    <button class="add-to-cart-btn" style="font-size: 1.2rem; padding: 15px;" onclick="addToCartFromModal(${product.id})">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function changeQuantity(delta) {
+            const input = document.getElementById('quantityInput');
+            const newValue = Math.max(1, Math.min(10, parseInt(input.value) + delta));
+            input.value = newValue;
+        }
+
+        function addToCartFromModal(productId) {
+            const quantity = parseInt(document.getElementById('quantityInput').value);
+            addToCart(productId, quantity);
+            closeProductModal();
+        }
+
+        // Seller Form
+        function submitSellerForm(event) {
+            event.preventDefault();
+            alert('🎉 Thank you for your interest!\n\nYour seller application has been submitted. Our team will review your details and contact you within 2-3 business days.\n\nWelcome to the Bharatverse family!');
+            showLanding();
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            const productModal = document.getElementById('productModal');
+            if (event.target === productModal) {
+                closeProductModal();
+            }
+        }
+
+        // Initial load
+        showLanding();
+    </script>
+</body>
+</html>
