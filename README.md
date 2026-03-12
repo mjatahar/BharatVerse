@@ -6,6 +6,8 @@ Bharatverse is a static web project that showcases the rich cultural heritage of
 
 The goal of Bharatverse is to depict the diversity of all states of India in a visually engaging format. It serves as a cultural showcase where users can explore state-specific pages and themed experiences centered around Indian heritage.
 
+Deployment link :- bharat-verse-five.vercel.app
+
 ## Current Structure
 
 - `index.html` - main landing page for Bharatverse
